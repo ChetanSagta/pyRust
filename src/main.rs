@@ -19,6 +19,7 @@ fn execute(filename: &str){
     println!("File Content: {}",file_content);
     let mut lex = Lexer::new(&file_content);
     lex.tokenize();
+    lex.print_tokens();
 }
 
 fn main() {

@@ -1,10 +1,10 @@
-#[derive(Debug)]
-pub struct Token<'a>{
+#[derive(Debug, Clone)]
+pub struct Token{
     pub token_type: TokenType,
-    pub value: &'a str
+    pub value: String
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum TokenType{
     Plus,
     Minus,
@@ -14,5 +14,9 @@ pub enum TokenType{
     Compare,
     NotEquals,
     Comment,
-    Literal
+    Literal,
+    Number,
+    Space,
+    Newline
+
 }

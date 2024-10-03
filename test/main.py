@@ -1,1 +1,1 @@
-for i in range():
+123 + 22
