@@ -1,10 +1,10 @@
 use crate::{
     constant::EOF,
     constant::EOL,
-    token::{Token, TokenType},
+    token::{Token, TokenType, DataTypes},
 };
 
-pub struct Lexer {
+pub struct Lexer{
     row: i32,
     col: i32,
     index: usize,
@@ -12,7 +12,7 @@ pub struct Lexer {
     tokens: Vec<Token>,
 }
 
-impl Lexer {
+impl Lexer{
     pub fn new(input_string: &str) -> Self {
         Self {
             row: 0,
@@ -28,15 +28,15 @@ impl Lexer {
             match ch {
                 '+' => self.tokens.push(Token {
                     token_type: TokenType::Plus,
-                    value: "+".to_string(),
+                    value: DataTypes::Str("+"),
                 }),
                 ' ' => self.tokens.push(Token {
                     token_type: TokenType::Space,
-                    value: " ".to_string(),
+                    value: DataTypes::Str(" "),
                 }),
                 '\n' => self.tokens.push(Token {
                     token_type: TokenType::Newline,
-                    value: String::from(EOL),
+                    value: DataTypes::Char(EOL),
                 }),
 		EOF => {
 		    println!("Lexing Ended");
@@ -44,12 +44,12 @@ impl Lexer {
 		}
                 _ => {
                     if self.is_digit() {
-                        let numbers = self.numbers();
+                        let numbers = self.numbers().parse::<f32>().unwrap();
                         let token = Token {
                             token_type: TokenType::Number,
-                            value: numbers,
+                            value: DataTypes::Float(numbers),
                         };
-                        self.tokens.push(token.clone());
+                        self.tokens.push(token);
                     } else if self.is_alphabet() {
                         self.alphanumberic();
                     } else {
@@ -74,6 +74,7 @@ impl Lexer {
 	    return EOL;
         }
         let content = self.content.chars().nth(self.index).unwrap();
+        println!("Content : {}", content);
         return content;
     }
 
