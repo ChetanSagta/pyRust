@@ -6,24 +6,24 @@ pub struct Token{
 
 #[derive(Debug, Clone)]
 pub enum DataTypes{
-    Int(i32),
-    Str(&'static str),
+    Char(char),
     Float(f32),
-    Char(char)
+    Int(i32),
+    Str(&'static str)
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone,PartialEq)]
 pub enum TokenType{
-    Plus,
-    Minus,
-    Product,
+    Comment,
+    Compare,
     Divide,
     Equals,
-    Compare,
-    NotEquals,
-    Comment,
     Literal,
+    Minus,
+    Newline,
+    NotEquals,
     Number,
-    Space,
-    Newline
+    Plus,
+    Product,
+    Space
 }

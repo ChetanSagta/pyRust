@@ -74,7 +74,6 @@ impl Lexer{
 	    return EOL;
         }
         let content = self.content.chars().nth(self.index).unwrap();
-        println!("Content : {}", content);
         return content;
     }
 
@@ -104,20 +103,16 @@ impl Lexer{
     pub fn is_digit(&mut self) -> bool {
         let ch = self.peek();
         if ch >= '0' && ch <= '9' {
-            println!("Digit");
             return true;
         }
-        println!("Not Digit");
         return false;
     }
 
     pub fn is_alphabet(&mut self) -> bool {
         let ch = self.peek();
         if (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') {
-            println!("Alphabet");
             return true;
         }
-        println!("Not Alphabet");
         return false;
     }
 
@@ -125,12 +120,16 @@ impl Lexer{
         return self.is_alphabet() || self.is_digit();
     }
 
-    pub fn print_tokens(self) {
+    pub fn print_tokens(&self) {
         println!("=====================================");
         println!("Printing Tokens");
-        for token in self.tokens {
+        for token in &self.tokens {
             println!("Token: {:?}", token);
         }
         println!("=====================================");
+    }
+
+    pub fn get_tokens(self) -> Vec<Token> {
+	return self.tokens;
     }
 }

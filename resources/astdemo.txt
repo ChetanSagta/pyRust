@@ -1,0 +1,3 @@
+Module(body=[Expr(value=Compare(left=Constant(value=1), ops=[Eq(), Eq()], comparators=[Constant(value=1), Constant(value=1)]))], type_ignores=[])
+
+Both 1 * 2 + 3 and (1 * 2) + 3 are represented as Add(Mul(Int(1), Int(2)), Int(3)).
